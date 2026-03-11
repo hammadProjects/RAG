@@ -46,7 +46,7 @@ vector_store = QdrantVectorStore(
     client=quadrant_client,
 )
 
-# for i in range(0, len(docs), batch_size):
-#     batch = docs[i:i+batch_size]
-#     vector_store.add_documents(batch)
-#     time.sleep(60)
+for i in range(0, len(docs), batch_size):
+    batch = docs[i:i+batch_size]
+    vector_store.add_documents(batch)
+    time.sleep(60)
