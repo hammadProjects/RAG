@@ -1,0 +1,22 @@
+# python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# virtual environment
+venv/
+.env/
+
+# environment variables
+.env
+
+# vector database
+db/
+chroma_db/
+
+# OS files
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
