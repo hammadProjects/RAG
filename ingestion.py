@@ -8,7 +8,6 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, VectorParams
 from pprint import pp
 import os
-import time
 load_dotenv()
 # To prevent hitting rate limit - process big docs in batches
 batch_size = 50
@@ -33,20 +32,21 @@ embeddings = GoogleGenerativeAIEmbeddings(
 
 # Get size of embeddings of current model
 vector_size = len(embeddings.embed_query("dummy query"))
-if not quadrant_client.collection_exists("rag-genai"):
+if not quadrant_client.collection_exists("oop"):
     quadrant_client.create_collection(
-        "rag-genai", 
+        "oop", 
         vectors_config=VectorParams(size=vector_size,distance=Distance.COSINE)
     )
 
 # qdrant vector store init
 vector_store = QdrantVectorStore(
-    collection_name="rag-genai",
+    collection_name="oop",
     embedding=embeddings,
     client=quadrant_client,
 )
 
-for i in range(0, len(docs), batch_size):
-    batch = docs[i:i+batch_size]
-    vector_store.add_documents(batch)
-    time.sleep(60)
+# import time
+# for i in range(0, len(docs), batch_size):
+#     batch = docs[i:i+batch_size]
+#     vector_store.add_documents(batch)
+#     time.sleep(60)
